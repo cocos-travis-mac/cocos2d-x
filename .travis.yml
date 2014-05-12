@@ -1,24 +1,11 @@
-language: cpp
+language: objective-c
+script:
+ - export PYTHON_BIN=/usr/bin/python
+ - ./tools/travis-scripts/run-script.sh
+before_install:
+ - ./tools/travis-scripts/before-install.sh
 env:
   matrix:
-  - PLATFORM=mac-ios PUSH_TO_MAC=YES
-  global:
-  - secure: |-
-      cHXOjAda+t2tmBVuVAiQfvhDN+unToO6hX1rc3dJeGDOk4rlQnylJacjA7o/
-      enkWeHagbW2Ja4h7BxQz4h7dada8zEbIbEMK4VEHx6AWwQM+GIEqkJPv5g8k
-      4P20MLpX4XyUwm/16btpnqgXlyd8Q3Zjh3Vui/5/VzwPnxUQEho=
-  - secure: |-
-      U/JsyiSR9q+8wX1arfciy3BdbMQaKmgt48/9tiU7P2RQJ/FR2AHGq85sNGI/
-      ZUxN4JPLGALEvkFMo4NYyJDUcsdRHZX3vbp5xbSSRaBigqJIj3HDxtlPVf2m
-      /W2GzcfNNX1ACO18hSWH0d2yFlF263ZmvudzQIfqTESfjGQBzwA=
-  - secure: |-
-      Wsngwo3jlZtvuPfr3RNhqrz/liNIhKYnlw4KYJO90gMQ9ZQKRTlMv2BMiPw/
-      9lV+vgJQDRcFe7dKwtC86vk10EU7Ym2bhVmhMxi/AlmJXgavjmPVdizRT7rh
-      X2Ry/Nb6hGRkH3WS0T3D/KG1+e7lP/TMB9bvo6/locLJ2A6Z1YI=
-  - secure: l1YRHwTt88agQjTTQjKN6LuUqfQACMlpN7EtD2AAaPUx2zv/ZPFGmeYLGR3bo3wgPRkDTjpEdBLimSWeTeBQvd3owkDiVrU72gAGhLWptmAKNtzIOq34E5QtdFlLAiunyxPrBpTiV2Iey+N39mGz+m64c5k/+EW1K87P63TNTXI=
-script:
-- export CC=$CC_COMPILER
-- export CXX=$CXX_COMPILER
-- tools/travis-scripts/run-script.sh
-before_install:
-- tools/travis-scripts/before-install.sh
+  - PLATFORM=mac-ios SDK=iphonesimulator7.1 ARCH=i386 SCHEME="build all tests iOS"
+#  - PLATFORM=mac-ios SDK=iphonesimulator7.1 ARCH=x86_64 SCHEME="build all tests iOS"
+  - PLATFORM=mac-ios SDK=macosx10.9 ARCH=x86_64 SCHEME="build all tests Mac"
